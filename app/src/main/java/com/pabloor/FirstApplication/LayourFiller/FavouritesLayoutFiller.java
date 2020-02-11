@@ -1,6 +1,5 @@
 package com.pabloor.FirstApplication.LayourFiller;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pabloor.FirstApplication.Quotation;
 import com.pabloor.FirstApplication.R;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayoutFiller.ViewHolder> {
 
     List<Quotation> ListQuotations;
+
+    public FavouritesLayoutFiller (List<Quotation> ParameterList){
+        ListQuotations = ParameterList;
+    }
 
     @NonNull
     @Override
@@ -30,17 +31,15 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
 
     @Override
     public void onBindViewHolder(@NonNull FavouritesLayoutFiller.ViewHolder holder, int position) {
-
+        holder.textView1.setText(ListQuotations.get(position).getQuoteText());
+        holder.textView2.setText(ListQuotations.get(position).getQuoteAuthor());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ListQuotations.size();
     }
 
-    FavouritesLayoutFiller (List<Quotation> ParameterList){
-        ListQuotations = ParameterList;
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView1;
