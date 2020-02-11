@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FirstApplication</string>
+    <string name="aboutinfo">First Application hecha por \\n\\n Pablo López Orrios \\n\\n pabloor@epsa.upv.es \\n\\n 2020</string>
+    <string name="attachment_summary_off">Solo descargar adjuntos cuando solicitado manualmente</string>
+    <string name="attachment_summary_on">Descarfa adjuntos automaticamente para emails recibidos[...]</string>
+    <string name="attachment_title">Descargar adjuntos recibidos</string>
+    <string name="button1Name">Ver Citas</string>
+    <string name="button2Name">Citas favoritas</string>
+    <string name="button3Name">Configuración</string>
+    <string name="button4Name">Informacion</string>
+    <string name="buttonAct1Name">Informacion del autor</string>
+    <string name="dadm">Bienvenido a mi aplicación</string>
+    <string name="englisht">Inglés</string>
+    <string name="languagetext">Las citas se mostrarán en el siguiente idioma:</string>
+    <string name="messages_header">Mensajes</string>
+    <string name="noquotationtext">Hola  %1s!\\nPulsa en recargar para mostrar citas</string>
+    <string name="reply_title">Accion por defecto de respuesta</string>
+    <string name="russiant">Ruso</string>
+    <string name="sampleauthor">Esto es un autor de muestra</string>
+    <string name="samplequotations">Esto es una frase de muestra</string>
+    <string name="signature_title">Tu firma</string>
+    <string name="textChanged">Texto cambiado</string>
+    <string name="title_activity_settings2">Configuración</string>
+    <string name="username">Inserta tu nombre</string>
+    <string name="usernametext">Nombre que identifica al usuario</string>
+    <string name="webrequeststext">las peticiones web serán realizadas mediante el metodo HTTP seleccionado</string>
+    <string name="sync_header">Sincronizar</string>
+    <string name="sync_title">Sincronizar email perodicamente</string>
+</resources>

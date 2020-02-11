@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">FirstApplication</string>
+    <string name="dadm">Welcome to my application</string>
+    <string name="textChanged">Text Changed!</string>
+    <string name="button1Name">GET QUOTATIONS</string>
+    <string name="button2Name">FAVOURITE QUOTATIONS</string>
+    <string name="button3Name">SETTINGS</string>
+    <string name="button4Name">ABOUT</string>
+    <string name="buttonAct1Name">Author Info</string>
+    <string name="usernametext">Name that identifies the user</string>
+    <string name="username">Insert your name</string>
+    <string name="languagetext">Quotations will be received in the selected language</string>
+    <string name="webrequeststext">Web request will be performed using the selected HTTP method</string>
+    <string name="englisht">English</string>
+    <string name="russiant">Russian</string>
+    <string name="aboutinfo">First Application made by \n\n Pablo López Orrios \n\n pabloor@epsa.upv.es \n\n 2020</string>
+    <string name="noquotationtext">Hello %1s!\nPress Refresh to get a new quotation</string>
+    <string name="samplequotations">This is a sample quotation</string>
+    <string name="sampleauthor">this is a sample author</string>
+    <string name="title_activity_settings2">Settings</string>
+    <string name="GETt" translatable="false">GET</string>
+    <string name="POSTt" translatable="false">POST</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+</resources>
