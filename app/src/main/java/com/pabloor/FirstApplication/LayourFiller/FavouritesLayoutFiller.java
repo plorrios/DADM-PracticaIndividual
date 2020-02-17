@@ -33,6 +33,7 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
 
     public void RemoveQuotation(int position){
         ListQuotations.remove(position);
+        notifyItemRemoved(position);
     }
 
     @NonNull
@@ -45,10 +46,17 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
             public void onClick(View v) {
                 try {
                     interfaceClick.OnInterfaceClick(viewHolder.getAdapterPosition());
-                    interfaceLongClick.OnInterfaceLongClick(viewHolder.getAdapterPosition());
+
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        FirstView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                interfaceLongClick.OnInterfaceLongClick(viewHolder.getAdapterPosition());
+                return true;
             }
         });
         return viewHolder;
