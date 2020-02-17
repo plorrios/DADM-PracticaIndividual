@@ -11,21 +11,46 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pabloor.FirstApplication.Quotation;
 import com.pabloor.FirstApplication.R;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayoutFiller.ViewHolder> {
 
     List<Quotation> ListQuotations;
+    InterfaceClick interfaceClick;
+    InterfaceLongClick interfaceLongClick;
 
-    public FavouritesLayoutFiller (List<Quotation> ParameterList){
+    public FavouritesLayoutFiller (List<Quotation> ParameterList,  InterfaceClick ParameterInterfaceClick, InterfaceLongClick ParameterInterfaceLongClick){
         ListQuotations = ParameterList;
+        interfaceClick = ParameterInterfaceClick;
+        interfaceLongClick = ParameterInterfaceLongClick;
+    }
+
+    public Quotation GetQuotation(int position){
+        return ListQuotations.get(position);
+
+    }
+
+    public void RemoveQuotation(int position){
+        ListQuotations.remove(position);
     }
 
     @NonNull
     @Override
     public FavouritesLayoutFiller.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View FirstView = LayoutInflater.from(parent.getContext()).inflate(R.layout.quotation_list_row,null);
-        ViewHolder viewHolder = new ViewHolder(FirstView);
+        View FirstView = LayoutInflater.from(parent.getContext()).inflate(R.layout.quotation_list_row,parent,false);
+        final ViewHolder viewHolder = new ViewHolder(FirstView);
+        FirstView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    interfaceClick.OnInterfaceClick(viewHolder.getAdapterPosition());
+                    interfaceLongClick.OnInterfaceLongClick(viewHolder.getAdapterPosition());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         return viewHolder;
     }
 
@@ -45,11 +70,26 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
         private TextView textView1;
         private TextView textView2;
 
-        ViewHolder(View view){
+        ViewHolder(View view/*,InterfaceClick interfaz*/) {
             super(view);
+
+            /*FirstView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interfaz.OnInterfaceClick(viewHolder.getAdapterPosition());
+                }
+            });*///opcion 2
+
             textView1 = view.findViewById(R.id.Quotationtext);
             textView2 = view.findViewById(R.id.QuotationAuthor);
         }
-
     }
+
+    public interface InterfaceClick{
+        void OnInterfaceClick(int position) throws UnsupportedEncodingException;
+    }
+    public interface InterfaceLongClick{
+        void OnInterfaceLongClick(int position);
+    }
+
 }

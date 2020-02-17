@@ -34,4 +34,8 @@
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="AlertRemovalMessage"> Are you sure you want to remove this quotation? </string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

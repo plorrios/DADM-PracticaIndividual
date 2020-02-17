@@ -24,7 +24,10 @@
     <string name="title_activity_settings2">Configuración</string>
     <string name="username">Inserta tu nombre</string>
     <string name="usernametext">Nombre que identifica al usuario</string>
-    <string name="webrequeststext">las peticiones web serán realizadas mediante el metodo HTTP seleccionado</string>
+    <string name="webrequeststext">Las peticiones web serán realizadas mediante el metodo HTTP seleccionado</string>
     <string name="sync_header">Sincronizar</string>
     <string name="sync_title">Sincronizar email perodicamente</string>
+    <string name="AlertRemovalMessage">¿Estas seguro de que quieres eliminar esta cita?</string>
+    <string name="yes">Si</string>
+    <string name="no">no</string>
 </resources>
