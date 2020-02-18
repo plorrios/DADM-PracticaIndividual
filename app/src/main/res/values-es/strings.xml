@@ -30,4 +30,6 @@
     <string name="AlertRemovalMessage">¿Estas seguro de que quieres eliminar esta cita?</string>
     <string name="yes">Si</string>
     <string name="no">no</string>
+    <string name="AddText">Añadir</string>
+    <string name="RefreshText">Recargar</string>
 </resources>

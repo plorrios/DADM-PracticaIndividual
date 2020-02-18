@@ -10,12 +10,41 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SettingsActivity2"
-            android:label="@string/title_activity_settings2"></activity>
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".FavouritesActivity" />
-        <activity android:name=".QuotationsActivity" />
+            android:name=".AboutActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pabloor.FirstApplication.MainActivity"
+                />
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pabloor.FirstApplication.MainActivity"
+            />
+        </activity>
+
+        <activity
+            android:name=".FavouritesActivity"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.pabloor.FirstApplication.MainActivity"
+            />
+        </activity>
+
+        <activity
+            android:name=".QuotationsActivity"
+            android:parentActivityName=".MainActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.pabloor.FirstApplication.MainActivity"
+            />
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

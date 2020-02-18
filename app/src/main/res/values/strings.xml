@@ -38,4 +38,7 @@
     <string name="AlertRemovalMessage"> Are you sure you want to remove this quotation? </string>
     <string name="yes">yes</string>
     <string name="no">no</string>
+
+    <string name="AddText">Add</string>
+    <string name="RefreshText">Refresh</string>
 </resources>
