@@ -32,4 +32,6 @@
     <string name="no">no</string>
     <string name="AddText">Añadir</string>
     <string name="RefreshText">Recargar</string>
+    <string name="ClearText">Eliminar todo</string>
+    <string name="AlertRemovalMessageAll">¿Estas seguro de que quieres eliminar todas las cita?</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.pabloor.FirstApplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -10,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -92,7 +95,7 @@ public class FavouritesActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                internalfavouritesLayoutFiller.RemoveQuotation(removalItem);
+                favouritesLayoutFiller.RemoveQuotation(removalItem);
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -102,7 +105,36 @@ public class FavouritesActivity extends AppCompatActivity {
             }
         });
         builder.create().show();
-
     }
 
+    public void CreateAlertMenuRemovalAll(final FavouritesLayoutFiller internalfavouritesLayoutFiller){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.AlertRemovalMessageAll);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                internalfavouritesLayoutFiller.RemoveAllQuotations();
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favourites_actionbar,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        CreateAlertMenuRemovalAll(favouritesLayoutFiller);
+        return super.onOptionsItemSelected(item);
+    }
 }

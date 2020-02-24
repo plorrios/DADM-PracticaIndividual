@@ -3,8 +3,8 @@ package com.pabloor.FirstApplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,7 +18,8 @@ public class QuotationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quotations);
 
         final TextView tvSecondActivity = findViewById(R.id.tvSecondActivity);
-        tvSecondActivity.setText(getString(R.string.noquotationtext,"Nameless One"));
+        SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        tvSecondActivity.setText(getString(R.string.noquotationtext, preferences.getString("Name","Nameless One")));
     }
     public void loadquotation(View view){
         final TextView tvSecondActivity = findViewById(R.id.tvSecondActivity);
@@ -29,7 +30,7 @@ public class QuotationsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar,menu);
+        getMenuInflater().inflate(R.menu.quotations_actionbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 

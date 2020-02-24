@@ -36,9 +36,11 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
     <string name="AlertRemovalMessage"> Are you sure you want to remove this quotation? </string>
+    <string name="AlertRemovalMessageAll"> Are you sure you want to remove all quotations? </string>
     <string name="yes">yes</string>
     <string name="no">no</string>
 
     <string name="AddText">Add</string>
     <string name="RefreshText">Refresh</string>
+    <string name="ClearText">Clear all</string>
 </resources>

@@ -35,6 +35,10 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
         ListQuotations.remove(position);
         notifyItemRemoved(position);
     }
+    public void RemoveAllQuotations(){
+        ListQuotations.clear();
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
