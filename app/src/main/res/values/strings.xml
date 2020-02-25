@@ -15,8 +15,8 @@
     <string name="russiant">Russian</string>
     <string name="aboutinfo">First Application made by \n\n Pablo López Orrios \n\n pabloor@epsa.upv.es \n\n 2020</string>
     <string name="noquotationtext">Hello %1s!\nPress Refresh to get a new quotation</string>
-    <string name="samplequotations">This is a sample quotation</string>
-    <string name="sampleauthor">this is a sample author</string>
+    <string name="samplequotations">Sample quotation %1$s</string>
+    <string name="sampleauthor">Sample author %1$s</string>
     <string name="title_activity_settings2">Settings</string>
     <string name="GETt" translatable="false">GET</string>
     <string name="POSTt" translatable="false">POST</string>

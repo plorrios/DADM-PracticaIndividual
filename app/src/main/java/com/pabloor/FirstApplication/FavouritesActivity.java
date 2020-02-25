@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 public class FavouritesActivity extends AppCompatActivity {
     FavouritesLayoutFiller favouritesLayoutFiller;
+    public MenuItem item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +106,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
             }
         });
+        if (favouritesLayoutFiller.getItemCount()==0){ item.setVisible(false); }
         builder.create().show();
     }
 
@@ -123,12 +126,17 @@ public class FavouritesActivity extends AppCompatActivity {
 
             }
         });
+        item.setVisible(false);
         builder.create().show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.favourites_actionbar,menu);
+        if (menu != null){
+
+            item = menu.findItem(R.id.ClearId);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

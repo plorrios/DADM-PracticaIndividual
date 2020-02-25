@@ -16,22 +16,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        getSupportFragmentManager().beginTransaction().replace(R.id.ActivitySettings,new SettingsFragment()).commit();
-        name = findViewById(R.id.UserNameText);
-        SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
-        name.setText(preferences.getString("Name", ""));
-    }
 
-    @Override
-    protected void onPause() {
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        if (name.getText() != null){
-            editor.putString("Name",name.getText().toString());
-        } else {
-            editor.remove("Name");
-        }
-        editor.apply();
-        super.onPause();
+        getSupportFragmentManager().beginTransaction().replace(R.id.ActivitySettings,new SettingsFragment()).commit();
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat{
