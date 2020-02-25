@@ -1,6 +1,7 @@
 package com.pabloor.FirstApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 
@@ -15,7 +16,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        name = findViewById(R.id.editText1);
+        getSupportFragmentManager().beginTransaction().replace(R.id.ActivitySettings,new SettingsFragment()).commit();
+        name = findViewById(R.id.UserNameText);
         SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
         name.setText(preferences.getString("Name", ""));
     }
@@ -30,5 +32,13 @@ public class SettingsActivity extends AppCompatActivity {
         }
         editor.apply();
         super.onPause();
+    }
+
+    public static class SettingsFragment extends PreferenceFragmentCompat{
+
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.preferences_settings,rootKey);
+        }
     }
 }

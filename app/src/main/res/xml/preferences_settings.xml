@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="UserNameText"
+        android:title="@string/TitNameField"
+        android:summary="@string/DescNameField" />
+
+    <PreferenceCategory>
+
+        <ListPreference
+            android:defaultValue="@string/englisht"
+            android:entries="@array/quotationlang"
+            android:entryValues="@array/quotationlang"
+            android:key="QuotationLanguage"
+            android:title="@string/TitQuoatationsLanguaje"
+            android:summary="@string/DescQuotationsLangugaje" />
+
+        <ListPreference
+            android:defaultValue="@string/GETt"
+            android:entries="@array/HTTPMethod"
+            android:entryValues="@array/HTTPMethod"
+            android:key="HTTPMethod"
+            android:summary="@string/DescHTTPMethod"
+            android:title="@string/TitHTTPMethod" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

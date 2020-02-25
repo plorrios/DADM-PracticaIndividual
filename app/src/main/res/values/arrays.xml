@@ -13,4 +13,8 @@
         <item>@string/englisht</item>
         <item>@string/russiant</item>
     </string-array>
+    <string-array name="HTTPMethod">
+        <item>@string/GETt</item>
+        <item>@string/POSTt</item>
+    </string-array>
 </resources>

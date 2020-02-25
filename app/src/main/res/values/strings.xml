@@ -43,4 +43,15 @@
     <string name="AddText">Add</string>
     <string name="RefreshText">Refresh</string>
     <string name="ClearText">Clear all</string>
+
+    <string name="TitNameField">Username</string>
+    <string name="DescNameField">Name of the user that will appear on the application</string>
+    <string name="TitCategoryWebService">Web Service</string>
+    <string name="DescCategoryWebService">Type of web service that the app uses</string>
+    <string name="TitQuoatationsLanguaje">Quotations Language</string>
+    <string name="DescQuotationsLangugaje">The laguange that the quotations will appear in</string>
+    <string name="TitAppLanguage">Application language</string>
+    <string name="DescAppLanguage">The language that the application will have</string>
+    <string name="TitHTTPMethod">HTTP method</string>
+    <string name="DescHTTPMethod">The HTTP method that will be used on petitions</string>
 </resources>

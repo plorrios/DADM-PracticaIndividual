@@ -34,4 +34,14 @@
     <string name="RefreshText">Recargar</string>
     <string name="ClearText">Eliminar todo</string>
     <string name="AlertRemovalMessageAll">¿Estas seguro de que quieres eliminar todas las cita?</string>
+    <string name="DescAppLanguage">El idioma en el que estará la aplicación</string>
+    <string name="DescCategoryWebService">Tipo de web service Utilizado</string>
+    <string name="DescHTTPMethod">El metodo HTTP que será usado en peticiones</string>
+    <string name="DescNameField">Nombre del usuario que aparecerá en la aplicación</string>
+    <string name="DescQuotationsLangugaje">El lenguage en el que aparecerán las citas</string>
+    <string name="TitAppLanguage">Idioma de la aplicación</string>
+    <string name="TitCategoryWebService">Servicio web</string>
+    <string name="TitHTTPMethod">Metodo HTTP</string>
+    <string name="TitNameField">Nombre de usuario</string>
+    <string name="TitQuoatationsLanguaje">Lenguage de citas</string>
 </resources>
