@@ -9,15 +9,14 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM Quotation")
     List<Quotation> getAll();
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    List<Quotation> loadAllByIds(int[] userIds);
+    @Query("SELECT * FROM Quotation WHERE Text=:text")
+    Quotation findByName(String text);
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    Quotation findByName(String first, String last);
+    @Query("DELETE FROM Quotation")
+    void DeleteAll();
 
     @Insert
     public void insert(Quotation quotation);

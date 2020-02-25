@@ -26,6 +26,8 @@ public class Quotation
         quoteAuthor = quoteAuthorGiven;
     }
 
+    public int getKey() { return key; }
+
     public String getQuoteAuthor() {
         return quoteAuthor;
     }
@@ -41,4 +43,6 @@ public class Quotation
     public void setQuoteText(String quoteText) {
         this.quoteText = quoteText;
     }
+
+    public void setKey(int key) { this.key = key; }
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.pabloor.FirstApplication.LayourFiller.FavouritesLayoutFiller;
 import com.pabloor.FirstApplication.databases.BD_Access;
+import com.pabloor.FirstApplication.databases.QuotationsDatabase;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,14 +31,26 @@ public class FavouritesActivity extends AppCompatActivity {
     FavouritesLayoutFiller favouritesLayoutFiller;
     public MenuItem item;
     BD_Access database;
+    QuotationsDatabase database2;
+    public String accesMethod;
+    List<Quotation> quotations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        database = BD_Access.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
+        SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
 
-        List<Quotation> quotations = BD_Access.getInstance(this).QuotationsList();
+
+        accesMethod = preferences.getString("DatabaseType", getString(R.string.SQLitet));
+        if (accesMethod==getString(R.string.SQLitet)){
+            database = BD_Access.getInstance(this);
+            quotations = database.QuotationsList();}
+        else{
+            database2 = QuotationsDatabase.getInstance(this);
+            quotations = database2.userDao().getAll();}
+
+
 
         /*favouritesLayoutFiller.InterfaceClick interfaceClick = new FavouritesLayoutFiller.InterfaceClick() {
             @Override
@@ -75,6 +89,7 @@ public class FavouritesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
+
     }
 
     public void info(View view){
@@ -91,7 +106,9 @@ public class FavouritesActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                database.RemoveQuotation(favouritesLayoutFiller.GetQuotation(removalItem));
+                if (accesMethod==getString(R.string.SQLitet))
+                {database.RemoveQuotation(favouritesLayoutFiller.GetQuotation(removalItem));}
+                else{ database2.userDao().delete(favouritesLayoutFiller.GetQuotation(removalItem));}
                 favouritesLayoutFiller.RemoveQuotation(removalItem);
             }
         });
@@ -112,7 +129,10 @@ public class FavouritesActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                database.ClearDatabase();
+                if (accesMethod==getString(R.string.SQLitet))
+                {database.ClearDatabase();}
+                else{ database2.userDao().DeleteAll(); }
+
                 internalfavouritesLayoutFiller.RemoveAllQuotations();
             }
         });
@@ -133,7 +153,9 @@ public class FavouritesActivity extends AppCompatActivity {
 
             item = menu.findItem(R.id.ClearId);
         }
+        if (quotations.isEmpty()){item.setVisible(false);}
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
