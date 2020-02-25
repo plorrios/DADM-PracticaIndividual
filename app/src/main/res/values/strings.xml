@@ -15,8 +15,8 @@
     <string name="russiant">Russian</string>
     <string name="aboutinfo">First Application made by \n\n Pablo López Orrios \n\n pabloor@epsa.upv.es \n\n 2020</string>
     <string name="noquotationtext">Hello %1s!\nPress Refresh to get a new quotation</string>
-    <string name="samplequotations">Sample quotation %1$s</string>
-    <string name="sampleauthor">Sample author %1$s</string>
+    <string name="samplequotations">Sample quotation 1</string>
+    <string name="sampleauthor">Sample author 1</string>
     <string name="title_activity_settings2">Settings</string>
     <string name="GETt" translatable="false">GET</string>
     <string name="POSTt" translatable="false">POST</string>
@@ -54,4 +54,8 @@
     <string name="DescAppLanguage">The language that the application will have</string>
     <string name="TitHTTPMethod">HTTP method</string>
     <string name="DescHTTPMethod">The HTTP method that will be used on petitions</string>
+    <string name="Roomt" translatable="false">Room</string>
+    <string name="SQLitet" translatable="false">SQLiteOpenHelper</string>
+    <string name="Typet">Type</string>
+    <string name="TypeDatabasedesc">Type of database to use in the application</string>
 </resources>

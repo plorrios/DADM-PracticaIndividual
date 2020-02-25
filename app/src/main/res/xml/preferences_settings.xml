@@ -26,4 +26,16 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Databases">
+
+        <ListPreference
+            android:defaultValue="@string/SQLitet"
+            android:entries="@array/Databases"
+            android:entryValues="@array/Databases"
+            android:key="DatabaseType"
+            android:summary="@string/TypeDatabasedesc"
+            android:title="@string/Typet" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -17,4 +17,8 @@
         <item>@string/GETt</item>
         <item>@string/POSTt</item>
     </string-array>
+    <string-array name="Databases">
+        <item>@string/SQLitet</item>
+        <item>@string/Roomt</item>
+    </string-array>
 </resources>

@@ -28,7 +28,6 @@ public class FavouritesLayoutFiller extends RecyclerView.Adapter<FavouritesLayou
 
     public Quotation GetQuotation(int position){
         return ListQuotations.get(position);
-
     }
 
     public void RemoveQuotation(int position){

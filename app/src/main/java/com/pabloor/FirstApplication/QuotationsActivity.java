@@ -9,14 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.pabloor.FirstApplication.databases.BD_Access;
+
 public class QuotationsActivity extends AppCompatActivity {
 
     public int numcitas = 0;
     public MenuItem item2;
     public boolean enable=false;
+    BD_Access database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        database = BD_Access.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotations);
         if(savedInstanceState==null) {
@@ -50,17 +54,26 @@ public class QuotationsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String quotationtext = getString(R.string.samplequotations);
+        String quotationauthor = getString(R.string.sampleauthor);
+        Quotation quotation = new Quotation();
+        quotation.setQuoteText(quotationtext);
+        quotation.setQuoteAuthor(quotationauthor);
         switch (item.getItemId()){
             case R.id.AddId:
+                database.AddQuotation(quotation);
                 item2.setVisible(false);
                 return true;
             case R.id.RefreshId:
                 final TextView tvSecondActivity = findViewById(R.id.tvSecondActivity);
                 final TextView tvSecondActivity2 = findViewById(R.id.tvSecondActivity2);
-                tvSecondActivity.setText(getString(R.string.samplequotations));
-                tvSecondActivity2.setText(getString(R.string.sampleauthor));
-                item2.setVisible(true);
-                //invalidateOptionsMenu();
+                tvSecondActivity.setText(quotationtext);
+                tvSecondActivity2.setText(quotationauthor);
+                if (BD_Access.getInstance(this).isQuotationInDatabase(quotation)){
+                    item2.setVisible(false);
+                } else{
+                    item2.setVisible(true);
+                }
                 numcitas++;
                 return true;
 

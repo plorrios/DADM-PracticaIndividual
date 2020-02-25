@@ -44,4 +44,6 @@
     <string name="TitHTTPMethod">Metodo HTTP</string>
     <string name="TitNameField">Nombre de usuario</string>
     <string name="TitQuoatationsLanguaje">Lenguage de citas</string>
+    <string name="Typet">Tipo</string>
+    <string name="TypeDatabasedesc">Tipo de base de datos a usar en la aplicación</string>
 </resources>
