@@ -3,16 +3,21 @@ package com.pabloor.FirstApplication;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Quotation")
+import com.google.gson.annotations.SerializedName;
+
+@Entity(tableName = "Quotation", indices = {@Index(value = {"Text"}, unique = true)})
 public class Quotation
 {
     @NonNull
     @ColumnInfo(name = "Text")
+    @SerializedName("quotationText")
     private String quoteText;
 
     @ColumnInfo(name = "Author")
+    @SerializedName("quotationAutor")
     private String quoteAuthor;
 
     @ColumnInfo(name = "_ID")

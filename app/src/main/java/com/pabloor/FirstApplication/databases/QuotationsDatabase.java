@@ -17,7 +17,7 @@ public abstract class QuotationsDatabase extends RoomDatabase {
     public static synchronized QuotationsDatabase getInstance(Context context){
 
         if (quotationsDatabase == null) {
-            quotationsDatabase = Room.databaseBuilder(context,QuotationsDatabase.class,"QuotationContract").allowMainThreadQueries().build();
+            quotationsDatabase = Room.databaseBuilder(context,QuotationsDatabase.class,"QuotationContract").build();
         }
 
         return quotationsDatabase;

@@ -23,7 +23,6 @@ public class BD_Access extends SQLiteOpenHelper {
         if (BDAccess == null) {
             BDAccess = new BD_Access(context);
         }
-
         return BDAccess;
     }
 

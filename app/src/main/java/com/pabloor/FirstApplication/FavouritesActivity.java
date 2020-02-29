@@ -13,6 +13,8 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.pabloor.FirstApplication.LayourFiller.FavouritesLayoutFiller;
 import com.pabloor.FirstApplication.databases.BD_Access;
 import com.pabloor.FirstApplication.databases.QuotationsDatabase;
+import com.pabloor.FirstApplication.taks.DBThread;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -34,6 +37,8 @@ public class FavouritesActivity extends AppCompatActivity {
     QuotationsDatabase database2;
     public String accesMethod;
     List<Quotation> quotations;
+    DBThread databaseAcces;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +46,7 @@ public class FavouritesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favourites);
         SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
 
-
-        accesMethod = preferences.getString("DatabaseType", getString(R.string.SQLitet));
-        if (accesMethod==getString(R.string.SQLitet)){
-            database = BD_Access.getInstance(this);
-            quotations = database.QuotationsList();}
-        else{
-            database2 = QuotationsDatabase.getInstance(this);
-            quotations = database2.userDao().getAll();}
-
-
-
+        handler = new Handler();
         /*favouritesLayoutFiller.InterfaceClick interfaceClick = new FavouritesLayoutFiller.InterfaceClick() {
             @Override
             public void OnInterfaceClick(int position) {
@@ -64,7 +59,24 @@ public class FavouritesActivity extends AppCompatActivity {
             }
         };*///para declararlo aparte y luego pasarlo como parametro en vez de declararlo directamente en el parametro
 
-        favouritesLayoutFiller = new FavouritesLayoutFiller(quotations, new FavouritesLayoutFiller.InterfaceClick() {
+
+        databaseAcces = new DBThread(this);
+        accesMethod = preferences.getString("DatabaseType", getString(R.string.SQLitet));
+        quotations = new ArrayList<Quotation>();
+        if (accesMethod.equals(getString(R.string.SQLitet))){
+            database = BD_Access.getInstance(getApplicationContext());
+            databaseAcces.execute(true);
+        }else{
+            database2 = QuotationsDatabase.getInstance(getApplicationContext());
+            databaseAcces.execute(false);
+        }
+
+    }
+
+    public void AddQuotations(List<Quotation> localQuotations)
+    {
+        quotations = localQuotations;
+        favouritesLayoutFiller = new FavouritesLayoutFiller(localQuotations, new FavouritesLayoutFiller.InterfaceClick() {
             @Override
             public void OnInterfaceClick(int position) {
                 if (favouritesLayoutFiller.GetQuotation(position).getQuoteAuthor() == null) {
@@ -84,42 +96,57 @@ public class FavouritesActivity extends AppCompatActivity {
                 CreateAlertMenuRemoval(favouritesLayoutFiller, position);
             }
         });
+
         RecyclerView recyclerView = findViewById(R.id.FavouritesLayout);
         recyclerView.setAdapter(favouritesLayoutFiller);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
 
-    }
-
-    public void info(View view){
-        final Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + "Albert Einstein"));
-        startActivity(intent);
+        if(item!=null) {
+            if (quotations.isEmpty()) {
+                item.setVisible(false);
+            } else {
+                item.setVisible(true);
+            }
+        }
     }
 
     public void CreateAlertMenuRemoval(final FavouritesLayoutFiller internalfavouritesLayoutFiller,final int removalItem){
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.AlertRemovalMessage);
+        final Quotation removalQuotation = favouritesLayoutFiller.GetQuotation(removalItem);
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (accesMethod==getString(R.string.SQLitet))
-                {database.RemoveQuotation(favouritesLayoutFiller.GetQuotation(removalItem));}
-                else{ database2.userDao().delete(favouritesLayoutFiller.GetQuotation(removalItem));}
-                favouritesLayoutFiller.RemoveQuotation(removalItem);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Include here the code to access the database
+                        if (accesMethod.equals(getString(R.string.SQLitet))) {
+                            database.RemoveQuotation(removalQuotation);
+                        }
+                        else{ database2.userDao().delete(removalQuotation);}
+                     handler.post(new Runnable() {
+                         @Override
+                         public void run() {
+                             favouritesLayoutFiller.RemoveQuotation(removalItem);
+                             if (favouritesLayoutFiller.getItemCount()==0){item.setVisible(false);}
+                         }
+                     });
+                    }
+                }).start();
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                Log.d("QuotesSize3",Integer.toString(favouritesLayoutFiller.getItemCount()));
             }
         });
         if (favouritesLayoutFiller.getItemCount()==0){ item.setVisible(false); }
         builder.create().show();
+
     }
 
     public void CreateAlertMenuRemovalAll(final FavouritesLayoutFiller internalfavouritesLayoutFiller){
@@ -129,10 +156,16 @@ public class FavouritesActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (accesMethod==getString(R.string.SQLitet))
-                {database.ClearDatabase();}
-                else{ database2.userDao().DeleteAll(); }
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (accesMethod.equals(getString(R.string.SQLitet))){
+                            database.ClearDatabase();
+                        } else{
+                            database2.userDao().DeleteAll();
+                        }
+                    }
+                }).start();
                 internalfavouritesLayoutFiller.RemoveAllQuotations();
             }
         });
@@ -154,6 +187,7 @@ public class FavouritesActivity extends AppCompatActivity {
             item = menu.findItem(R.id.ClearId);
         }
         if (quotations.isEmpty()){item.setVisible(false);}
+        else {item.setVisible(true);}
         return super.onCreateOptionsMenu(menu);
 
     }
