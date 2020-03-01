@@ -132,9 +132,6 @@ public class QuotationsActivity extends AppCompatActivity {
 
     }
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         final String quotationtext = getString(R.string.samplequotations);
@@ -168,7 +165,6 @@ public class QuotationsActivity extends AppCompatActivity {
                 }
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
