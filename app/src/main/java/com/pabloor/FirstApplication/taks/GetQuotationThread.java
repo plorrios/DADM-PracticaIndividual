@@ -20,6 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
 
     WeakReference<QuotationsActivity> quotationsActivityWeakReference;
@@ -49,9 +51,9 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
             builder.appendQueryParameter("lang", language);
             try{
                 URL url = new URL(builder.build().toString());
-                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
                 connection.setRequestMethod("GET");
-                if(connection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                if(connection.getResponseCode() == HttpsURLConnection.HTTP_OK){
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     Gson gsonfile =  new Gson();
                     Log.d("",gsonfile.toString());
@@ -69,7 +71,7 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
             String body = "?language="+language+"&format=json&method=getQuote";
             try {
                 URL url = new URL(builder.build().toString());
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
@@ -77,7 +79,7 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
                 writer.write(body);
                 writer.flush();
                 writer.close();
-                if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                if(connection.getResponseCode() == HttpsURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     Gson gsonfile = new Gson();
                     quotation = gsonfile.fromJson(reader, Quotation.class);
