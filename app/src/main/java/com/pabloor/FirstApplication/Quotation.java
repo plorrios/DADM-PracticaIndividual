@@ -13,11 +13,11 @@ public class Quotation
 {
     @NonNull
     @ColumnInfo(name = "Text")
-    @SerializedName("quotationText")
+    @SerializedName("quoteText")
     private String quoteText;
 
     @ColumnInfo(name = "Author")
-    @SerializedName("quotationAutor")
+    @SerializedName("quoteAuthor")
     private String quoteAuthor;
 
     @ColumnInfo(name = "_ID")

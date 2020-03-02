@@ -52,7 +52,6 @@ public class QuotationsActivity extends AppCompatActivity {
             database2 = QuotationsDatabase.getInstance(getApplicationContext());
         }
         if(savedInstanceState==null) {
-            final TextView tvSecondActivity = findViewById(R.id.tvSecondActivity);
             tvSecondActivity.setText(getString(R.string.noquotationtext, preferences.getString("UserNameText", "Nameless One")));
         }else{
 
@@ -134,8 +133,8 @@ public class QuotationsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        final String quotationtext = getString(R.string.samplequotations);
-        final String quotationauthor = getString(R.string.sampleauthor);
+        final String quotationtext = tvSecondActivity.getText().toString();
+        final String quotationauthor = tvSecondActivity2.getText().toString();
         final Quotation quotation = new Quotation();
         quotation.setQuoteText(quotationtext);
         quotation.setQuoteAuthor(quotationauthor);

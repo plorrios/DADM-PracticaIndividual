@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -52,7 +53,8 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
                 URL url = new URL(builder.build().toString());
                 HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
                 connection.setRequestMethod("GET");
-                if(connection.getResponseCode() == HttpsURLConnection.HTTP_OK){
+                connection.setDoInput(true);
+                if(connection.getResponseCode() == HttpURLConnection.HTTP_OK){
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     Gson gsonfile =  new Gson();
                     Log.d("",gsonfile.toString());
@@ -67,7 +69,7 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
                 e.printStackTrace();
             }
         }else{
-            String body = "?language="+language+"&format=json&method=getQuote";
+            String body = "format=json&method=getQuote"+"&lang="+language;
             try {
                 URL url = new URL(builder.build().toString());
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -89,7 +91,6 @@ public class GetQuotationThread extends AsyncTask<Void, Void, Quotation> {
                 e.printStackTrace();
             }
         }
-        Log.d("quotationtext",quotation.getQuoteText());
         return quotation;
 
     }

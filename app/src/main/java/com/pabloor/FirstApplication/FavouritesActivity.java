@@ -194,6 +194,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.ClearId)
         CreateAlertMenuRemovalAll(favouritesLayoutFiller);
         return super.onOptionsItemSelected(item);
     }
